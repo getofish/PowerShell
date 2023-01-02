@@ -1,0 +1,2 @@
+$members = (Get-ADGroup "XXXXXX" -Properties member).member
+$members | Foreach-Object {Get-ADUser $_} | Select name, samaccountname | Export-csv -path C:\XXXXXX.csv
