@@ -1,0 +1,18 @@
+Query a list in AD using PowerShell.
+Open up Powershell.
+Type in the following
+
+Get-ADGroup –filter * | sort name| select name
+This will querry all groups inside of an AD environment.
+Go one step further by using the –Identity modifier. This will allow you to look up a particular grop
+Get-ADGroup –filter * | sort name| select name –Identity “Insert groupname”
+In this example I was looking up XXXXXXXXXXXXX
+It would look like this
+Get-ADGroup –filter * | sort name| select name –Identity “XXXXXXXXXXX”
+This will show you all group members in this group as well as domain ID. You can add a select name to the end of the string to only have the names of the users
+Get-ADGroup –filter * | sort name| select name –Identity “XXXXXXXXX” | Select name
+
+Pipe that information out. Piping is a wonderful tool. It allows you to send all that info to a an excel sheet
+Get-ADGroup –filter * | sort name| select name –Identity “XXXXXXXX” | Export-csv -path C:\XXXXXXXXX.csv –NoTypeInformation
+
+By doing this I am telling the process to pipe the info out and make it clean.
