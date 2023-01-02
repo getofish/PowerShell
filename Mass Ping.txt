@@ -1,0 +1,9 @@
+$names = Get-content "C:\XXXXXXX.txt"  | foreach ($name in $names){
+  if (Test-Connection -ComputerName $name -Count 1 -ErrorAction SilentlyContinue){
+    Write-Host "$name,up"
+  }
+  else{
+    Write-Host "$name,down"
+  }
+}
+Export-Csv "C:XXXXXXX.csv" -NoTypeInformation -Encoding UTF8
