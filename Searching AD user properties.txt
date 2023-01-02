@@ -1,0 +1,130 @@
+ Get-ADUser **User ID should go here**| select Name, Department, @{l='OU';e={$_.DistinguishedName.split(',')[1].split('=')[1]}}
+ 
+ This gives the following output
+ 
+ Name             Department OU
+----             ---------- --
+XXXXXXXXX            XXXXXX
+
+
+To be on the safe side I ran the following 
+
+C:\WINDOWS\system32> Get-ADUser -Identity XXXXXXX -Properties *
+
+This gives an output of
+
+AccountExpirationDate                :
+accountExpires                       : 
+AccountLockoutTime                   :
+AccountNotDelegated                  : 
+AllowReversiblePasswordEncryption    : 
+AuthenticationPolicy                 : {}
+AuthenticationPolicySilo             : {}
+BadLogonCount                        : 0
+badPwdCount                          : 0
+CannotChangePassword                 : False
+CanonicalName                        : XXXXXX
+Certificates                         : {}
+City                                 :
+CN                                   : 
+codePage                             : 0
+Company                              :
+CompoundIdentitySupported            : {}
+Country                              :
+countryCode                          : 0
+Created                              : 
+createTimeStamp                      : 
+Deleted                              :
+Department                           : 
+Description                          : 
+DisplayName                          : 
+DistinguishedName                    : 
+Division                             :
+DoesNotRequirePreAuth                : False
+dSCorePropagationData                : {12/31/1600 7:00:00 PM}
+EmailAddress                         :
+EmployeeID                           : 
+EmployeeNumber                       :
+Enabled                              : True
+Fax                                  :
+GivenName                            : 
+HomeDirectory                        : 
+HomedirRequired                      : False
+HomeDrive                            : O:
+HomePage                             :
+HomePhone                            :
+Initials                             :
+instanceType                         : 4
+isDeleted                            :
+KerberosEncryptionType               : {}
+LastBadPasswordAttempt               :
+LastKnownParent                      :
+LastLogonDate                        :
+LockedOut                            : False
+lockoutTime                          : 0
+LogonWorkstations                    :
+Manager                              : 
+MemberOf                             : 
+                                       
+                                       
+MNSLogonAccount                      : False
+MobilePhone                          :
+Modified                             : 
+modifyTimeStamp                      : 
+msDS-User-Account-Control-Computed   : 8388608
+Name                                 : 
+nTSecurityDescriptor                 : 
+ObjectCategory                       : 
+ObjectClass                          : 
+ObjectGUID                           : 
+objectSid                            : 
+Office                               :
+OfficePhone                          :
+Organization                         :
+OtherName                            :
+PasswordExpired                      : True
+PasswordLastSet                      :
+PasswordNeverExpires                 : False
+PasswordNotRequired                  : False
+POBox                                :
+PostalCode                           :
+PrimaryGroup                         : 
+primaryGroupID                       : 513
+PrincipalsAllowedToDelegateToAccount : {}
+ProfilePath                          :
+ProtectedFromAccidentalDeletion      : False
+pwdLastSet                           : 0
+SamAccountName                       : 
+sAMAccountType                       : 
+ScriptPath                           : 
+sDRightsEffective                    : 0
+ServicePrincipalNames                : {}
+SID                                  : 
+SIDHistory                           : {}
+SmartcardLogonRequired               : 
+sn                                   : 
+State                                :
+status                               : 
+StreetAddress                        :
+Surname                              : 
+Title                                : 
+TrustedForDelegation                 : 
+TrustedToAuthForDelegation           : 
+UseDESKeyOnly                        : 
+userAccountControl                   : 
+userCertificate                      : 
+UserPrincipalName                    : 
+uSNChanged                           : 
+uSNCreated                           : 
+whenChanged                          : 
+whenCreated                          : 
+
+Now all we want is the DN for this user
+
+C:\WINDOWS\system32> Get-ADUser -Identity XXXXXXX | Select DistinguishedName
+
+This gives us the following output
+
+DistinguishedName
+-----------------
+CN=XXXXXXXX,OU=xxxxxx,OU=xxxxx,DC=xxxxxxx
