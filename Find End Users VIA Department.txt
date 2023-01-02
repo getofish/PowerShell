@@ -1,0 +1,1 @@
+Get-ADUser -Filter {(department -eq "**Insert Department name from AD") -or (department -eq "**Insert department name from AD") } -Properties SamAccountName, GivenName, Title, Department | Select Name,ObjectClass,SamAccountName,Title,Department,enabled | Export-csv -path C:\**Create path and file name**.csv -NoTypeInformation
