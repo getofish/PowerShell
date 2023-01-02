@@ -1,0 +1,5 @@
+(135,139,445,5671,5672,8000,9111,15671,15672) | % { Test-NetConnection -ComputerName XXXXXXXXX -Port $_ } | select RemotePort, TcpTestSucceeded
+
+
+
+(135,139,445,2181,2888,3182,3888) | % { Test-NetConnection -ComputerName XXXXXXX -Port $_ } | select RemotePort, TcpTestSucceeded
