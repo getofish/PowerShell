@@ -1,0 +1,9 @@
+$groups = "XXXXXX", "XXXXX", "XXXXX", "XXXXXXXX"
+
+$results = foreach ($group in $groups) {
+    Get-ADGroupMember $group | select samaccountname, name, @{n='GroupName';e={$group}}, @{n='Description';e={(Get-ADGroup $group -Properties description).description}}
+}
+
+$results
+
+$results | Export-csv C:\XXXXXXX.csv -NoTypeInformation
