@@ -1,0 +1,9 @@
+$users = ForEach ($user in $(Get-Content C:\XXXXXXX.txt)) {
+
+    Get-AdUser $user -Properties Department,title
+        
+}
+    
+ $users |
+ Select-Object SamAccountName,Department,title |
+ Export-CSV -Path C:XXXXXX.csv -NoTypeInformation
