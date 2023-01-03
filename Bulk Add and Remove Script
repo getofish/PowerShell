@@ -1,0 +1,25 @@
+# Import active directory module for running AD cmdlets
+Import-Module activedirectory
+  
+#Store the data from xxxxxxxxx.csv in the $ADUsers variable
+$ADUsers = Import-csv C:xxxxxxxxxxxxxxx.csv
+
+#Loop through each row containing user details in the CSV file 
+foreach ($User in $ADUsers)
+{
+	#Read user data from each field in each row and assign the data to the designated variable below
+		
+	$Username 	 = $User.Username
+	$Remove		 = $User.Remove
+	$Group1 	 = $User.AddGroup1
+	$Group2		 = $User.AddGroup2
+	
+#Remove AD group from removal column
+Remove-ADGroupMember -Identity $Remove -Members $Username -Confirm:$false
+
+#Command to set the membership for group1
+Add-AdGroupMember -Identity $Group1 -Members $Username
+
+#Command to set the membership for group2
+Add-AdGroupMember -Identity $Group2 -Members $Username
+}
